@@ -1,0 +1,31 @@
+@api = http://localhost:8080
+
+### customers
+GET {{api}}/api/customers
+
+### Create tutorial
+POST {{api}}/api/customers
+Content-Type: application/json
+
+{
+  "title": "game development 1",
+  "description": "a game developmen2t",
+  "published":true
+}
+
+### get tutorial
+GET {{api}}/api/customers/2
+
+### delete tutorial
+DELETE {{api}}/api/customers/11
+
+
+### update tutorial
+PUT {{api}}/api/customers/2
+Content-Type: application/json
+
+{
+  "title": "Editado Tesdadst",
+  "description": "edit",
+  "published":true
+}
