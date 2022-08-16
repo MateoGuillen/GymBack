@@ -1,0 +1,33 @@
+@api = http://localhost:8080
+
+
+### cuota
+GET {{api}}/api/cuotas
+
+### Create cuota
+POST {{api}}/api/cuotas
+Content-Type: application/json
+
+{
+  "modalidad": "Funcional",
+  "tipo": "Mensual",
+  "fecha": "Fri Sep 16 2022 00:00:00 GMT-0400",
+  "monto": 1123
+}
+
+### get cuota
+GET {{api}}/api/cuotas/2
+
+### delete cuota
+DELETE {{api}}/api/cuotas/1
+
+
+### update cuota
+PUT {{api}}/api/cuotas/2
+Content-Type: application/json
+
+{
+  "title": "Editado Tesdadst",
+  "description": "edit",
+  "published":true
+}

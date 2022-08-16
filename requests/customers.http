@@ -3,24 +3,22 @@
 ### customers
 GET {{api}}/api/customers
 
-### Create tutorial
+### Create cuota
 POST {{api}}/api/customers
 Content-Type: application/json
 
 {
-  "title": "game development 1",
-  "description": "a game developmen2t",
-  "published":true
+  "nombre": "Mateo Guillen"
 }
 
-### get tutorial
+### get cuota
 GET {{api}}/api/customers/2
 
-### delete tutorial
-DELETE {{api}}/api/customers/11
+### delete cuota
+DELETE {{api}}/api/customers/1
 
 
-### update tutorial
+### update cuota
 PUT {{api}}/api/customers/2
 Content-Type: application/json
 

@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Create and Save a new customer
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.nombre) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -13,14 +13,13 @@ exports.create = (req, res) => {
   }
 
   // Create a customer
-  const customer = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
+  const customerPost = {
+    nombre: req.body.nombre,
   };
+  console.log(customerPost)
 
   // Save customer in the database
-  customer.create(customer)
+  customer.create(customerPost)
     .then(data => {
       res.send(data);
     })
@@ -34,8 +33,8 @@ exports.create = (req, res) => {
 
 // Retrieve all customers from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
+  const nombre = req.query.nombre;
+  var condition = nombre ? { nombre: { [Op.iLike]: `%${nombre}%` } } : null;
 
   customer.findAll({ where: condition })
     .then(data => {
