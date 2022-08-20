@@ -1,4 +1,5 @@
 
+
 module.exports = (sequelize, Sequelize) => {
   
   const customer = sequelize.define("customer", {
@@ -7,10 +8,7 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
   
-  //const cuota = --
-
-
- // customer.belongsTo(cuota); // foreign in customer
+  
 
   return customer;
 };

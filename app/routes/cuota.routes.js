@@ -9,8 +9,20 @@ module.exports = app => {
   // Retrieve all cuotas
   router.get("/", cuotas.findAll);
 
+  // Retrieve all cuotas
+  router.get("/test", cuotas.findAlltest);
+
+  // Retrieve all cuotas
+  router.get("/hoy", cuotas.findAllCuotaToDay);
+
   // Retrieve all published cuotas
-  router.get("/published", cuotas.findAllPublished);
+  router.get("/bycustomer/:customerId", cuotas.findAllByCustomer);
+
+  // Retrieve all published cuotas
+  router.get("/deudas/:customerId", cuotas.findAllByCustomerFecha);
+
+  // Retrieve all published cuotas
+  router.get("/pagados/:customerId", cuotas.findAllByCustomerFecha2);
 
   // Retrieve a single cuota with id
   router.get("/:id", cuotas.findOne);

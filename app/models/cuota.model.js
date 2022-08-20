@@ -1,3 +1,7 @@
+
+const { sequelize, Sequelize }= require('../config/sequelize.conf.js')
+const customer =require("./customer.model.js")(sequelize, Sequelize)
+
 module.exports = (sequelize, Sequelize) => {
   const cuota = sequelize.define("cuota", {
     modalidad: {
@@ -9,10 +13,17 @@ module.exports = (sequelize, Sequelize) => {
     fecha: {
       type: Sequelize.DATE
     },
+    fechaProximoPago: {
+      type: Sequelize.DATE
+    },
     monto: {
       type: Sequelize.INTEGER
     },
   });
+  
+  cuota.belongsTo(customer,{
+    foreignKey: "customerId", // change default foreignkey of node
+  }); // foreign in cuota
 
   return cuota;
 };

@@ -4,15 +4,31 @@
 ### cuota
 GET {{api}}/api/cuotas
 
+### cuota
+GET {{api}}/api/cuotas/test
+
+### cuota
+GET {{api}}/api/cuotas/hoy
+
+### cuota
+GET {{api}}/api/cuotas/bycustomer/1
+
+### cuota
+GET {{api}}/api/cuotas/deudas/1
+
+### cuota
+GET {{api}}/api/cuotas/pagados/1
+
 ### Create cuota
 POST {{api}}/api/cuotas
 Content-Type: application/json
 
 {
-  "modalidad": "Funcional",
-  "tipo": "Mensual",
-  "fecha": "Fri Sep 16 2022 00:00:00 GMT-0400",
-  "monto": 1123
+  "customerId": 2,
+  "modalidad": "Musculacion",
+  "tipo": "Semanal",
+  "fecha": "2022-08-20T04:00:00.000Z",
+  "monto": 555
 }
 
 ### get cuota

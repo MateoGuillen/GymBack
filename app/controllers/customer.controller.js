@@ -1,5 +1,6 @@
 const db = require("../models");
 const customer = db.customers;
+const cuota = db.cuotas;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new customer
@@ -15,6 +16,7 @@ exports.create = (req, res) => {
   // Create a customer
   const customerPost = {
     nombre: req.body.nombre,
+    //cuotaId: req.body.cuotaId
   };
   console.log(customerPost)
 
@@ -47,6 +49,10 @@ exports.findAll = (req, res) => {
       });
     });
 };
+
+
+
+
 
 // Find a single customer with an id
 exports.findOne = (req, res) => {

@@ -3,12 +3,16 @@
 ### customers
 GET {{api}}/api/customers
 
+### customers
+
+
 ### Create cuota
 POST {{api}}/api/customers
 Content-Type: application/json
 
 {
-  "nombre": "Mateo Guillen"
+  "nombre": "Antonella"
+  //"cuotaId": 2
 }
 
 ### get cuota
