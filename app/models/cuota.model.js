@@ -5,19 +5,23 @@ const customer =require("./customer.model.js")(sequelize, Sequelize)
 module.exports = (sequelize, Sequelize) => {
   const cuota = sequelize.define("cuota", {
     modalidad: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false
     },
     tipo: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false
     },
     fecha: {
-      type: Sequelize.DATE
+      type: Sequelize.DATE,
+      allowNull: false
     },
     fechaProximoPago: {
       type: Sequelize.DATE
     },
     monto: {
-      type: Sequelize.INTEGER
+      type: Sequelize.INTEGER,
+      allowNull: false
     },
   });
   

@@ -180,7 +180,8 @@ exports.findAlltest = (req, res) => {
       data.forEach((customer , index) => {
        
         var customerId = customer.dataValues.id;
-        const fechaHoy = new Date();
+        var nombreCustomer = customer.dataValues.nombre;
+
         //console.log(fechaHoy)
         var condition ={
                         customerId: customerId
@@ -195,6 +196,7 @@ exports.findAlltest = (req, res) => {
           if(data2 != null)
           {
             //console.log(data2.dataValues)
+            data2.dataValues.nombre = nombreCustomer
             cuotasVencidas.push(data2.dataValues)
             
             
