@@ -4,6 +4,7 @@ const db = require("../models");
 const cuota = db.cuotas;
 const customerDB = db.customers;
 const Op = db.Sequelize.Op;
+const { sequelize, Sequelize }= require('../config/sequelize.conf.js')
 
 
 
@@ -61,8 +62,12 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   const fecha = req.query.fecha;
   var condition = fecha ? { fecha: { [Op.iLike]: `%${fecha}%` } } : null;
+  var includeAtrib = {
+    model: customerDB,
+    attributes:['nombre']
+  }
 
-  cuota.findAll({ where: condition })
+  cuota.findAll({ where: condition, include: includeAtrib})
     .then(data => {
       res.send(data);
     })
@@ -136,28 +141,35 @@ exports.findAllCuotaToDay = (req, res) => {
   var total = {
     montoTotal : totalDia
   }
-
-
   var condition ={
-                 
                   createdAt: { 
                     [Op.gt]: TODAY_START,
                     [Op.lt]: NOW
                   },
-                  
                  }
+  //https://stackoverflow.com/questions/64016068/customize-returned-foreign-key-object-in-tojson-sequelize
   var conditionOrder = [ ['modalidad', 'DESC'] ];
-
-  cuota.findAll({ where: condition , order : conditionOrder })
+  var includeCol = ['id', 'modalidad','tipo','monto', 'fecha',
+                    'fechaProximoPago','customerId','createdAt','updatedAt',
+                    [sequelize.col('customer.nombre'), 'nombre']
+                  ]
+  var includeAtrib = {
+    model: customerDB,
+    as: 'customer',
+    attributes:[]
+  }
+  
+  cuota.findAll({ where: condition , order : conditionOrder, include:includeAtrib, attributes:includeCol})
     .then(data => {
-      data.forEach(cuotaElement => {
+      data.forEach((cuotaElement, index) => {
         totalDia = totalDia + cuotaElement.dataValues.monto
-        //console.log(totalDia)
       });
       console.log(totalDia)
       total.montoTotal = totalDia
       data.push(total)
+      console.log(data)
       res.send(data);
+      
     })
     .catch(err => {
       res.status(500).send({
@@ -168,15 +180,9 @@ exports.findAllCuotaToDay = (req, res) => {
 };
 
 exports.findAlltest = (req, res) => {
-  //const nombre = req.query.nombre;
-  //var condition = nombre ? { nombre: { [Op.iLike]: `%${nombre}%` } } : null;
-
-  //customer.findAll({ where: condition })
   var cuotasVencidas = [];
   customerDB.findAll()
     .then(data => {
-      //console.log(data.length)
-      //res.send(data);
       data.forEach((customer , index) => {
        
         var customerId = customer.dataValues.id;
@@ -261,6 +267,8 @@ exports.findAllByCustomerFecha2 = (req, res) => {
       });
     });
 };
+
+
 
 // Find a single cuota with an id
 exports.findOne = (req, res) => {
