@@ -1,0 +1,31 @@
+@api = http://localhost:8080
+
+### user
+GET {{api}}/api/users
+
+### Create user
+POST {{api}}/api/users/signup
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "1234"
+}
+
+### Create user
+POST {{api}}/api/users/login
+Content-Type: application/json
+
+{
+  "username": "user2",
+  "password": "3131141414gg"
+}
+
+### Create user
+POST {{api}}/api/users/login
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "d"
+}

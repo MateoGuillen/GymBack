@@ -20,5 +20,6 @@ db.sequelize = sequelize;
 
 db.customers = require("./customer.model.js")(sequelize, Sequelize);
 db.cuotas = require("./cuota.model.js")(sequelize, Sequelize);
+db.users = require("./user.model.js")(sequelize, Sequelize);
 
 module.exports = db;
