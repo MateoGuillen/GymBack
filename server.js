@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-
+var { expressjwt: jwt } = require("express-jwt");
+require('dotenv').config()
 const app = express();
 
 var corsOptions = {
@@ -15,6 +16,25 @@ app.use(express.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+console.log(process.env.PRIVATE_KEY)
+
+/*
+app.use(
+  jwt({
+    secret: process.env.PRIVATE_KEY,
+    algorithms: ["HS256"],
+  }).unless({ path: [] })
+);*/
+
+app.use(
+  jwt({ secret: process.env.PRIVATE_KEY, algorithms: ["HS256"] })
+  .unless({ path: [] }),
+    function (req, res) {
+      if (!req.auth.admin) return res.sendStatus(401);
+      res.sendStatus(200);
+    }
+);
+
 const db = require("./app/models");
 db.sequelize.sync()
   .then(() => {
@@ -25,7 +45,7 @@ db.sequelize.sync()
   });
 
 
-require('dotenv').config()
+
 //onsole.log(process.env) // remove this after you've confirmed it working
 
 // // drop the table if it already exists

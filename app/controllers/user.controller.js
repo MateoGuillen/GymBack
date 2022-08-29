@@ -2,6 +2,13 @@ const db = require("../models");
 const userDB = db.users;
 const Op = db.Sequelize.Op;
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require('dotenv').config()
+
+
+function generateAccessToken(username) {
+  return jwt.sign({ username }, process.env.PRIVATE_KEY, { expiresIn: "1800s", });
+}
 
 // Create and Save a new user
 exports.create = async function (req, res)  {
@@ -52,14 +59,18 @@ exports.login = async function (req, res) {
       // check user password with hashed password stored in the database
       const validPassword = await bcrypt.compare(req.body.password, user.password);
       if (validPassword) {
-        res.status(200).json({ message: "Valid password" });
+        //res.status(200).json({ message: "Valid password" });
+        const token = generateAccessToken(user.username);
+        res.json({
+          token: `Bearer ${token}`,
+        });
       } else {
         res.status(400).json({ error: "Invalid Password" });
       }
     } else {
       res.status(401).json({ error: "User does not exist" });
     }
-  
+
   }
 
 
