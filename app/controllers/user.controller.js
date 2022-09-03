@@ -53,7 +53,6 @@ exports.login = async function (req, res) {
   }
     var condition = { username: req.body.username }
     const user = await userDB.findOne({where :condition });
-    console.log(user.username)
     console.log(req.body.username)
     if (user) {
       // check user password with hashed password stored in the database

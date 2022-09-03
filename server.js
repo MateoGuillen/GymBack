@@ -26,6 +26,7 @@ app.use(
   }).unless({ path: [] })
 );*/
 
+/*
 app.use(
   jwt({ secret: process.env.PRIVATE_KEY, algorithms: ["HS256"] })
   .unless({ path: [] }),
@@ -34,6 +35,7 @@ app.use(
       res.sendStatus(200);
     }
 );
+*/
 
 const db = require("./app/models");
 db.sequelize.sync()

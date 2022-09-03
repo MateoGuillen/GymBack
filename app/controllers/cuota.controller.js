@@ -288,8 +288,40 @@ exports.findOne = (req, res) => {
 // Update a cuota by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
+  if (!req.body.modalidad || !req.body.tipo || !req.body.fecha || !req.body.monto || !req.body.customerId) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+    return;
+  }
+  var fecha = new Date (req.body.fecha)
+  var fechaPagar = fecha
 
-  cuota.update(req.body, {
+  if (req.body.tipo == "Mensual"){
+    fechaPagar = addDays(new Date(fecha), 30)
+  }else{
+    if (req.body.tipo == "Semanal"){
+      fechaPagar = addDays(new Date(fecha), 7)
+    }else{
+      //es Diario
+      fechaPagar = addDays(new Date(fecha), 1)
+    }
+  }
+  console.log(fechaPagar)
+  //fechaPagar.setDate(fechaPagar.getDate() + 30)
+
+  // Create a cuota
+  const cuotaPut = {
+    customerId: req.body.customerId,
+    modalidad: req.body.modalidad,
+    tipo: req.body.tipo,
+    fecha: req.body.fecha,
+    fechaProximoPago: fechaPagar,
+    monto: req.body.monto
+  };
+  console.log(cuotaPut)
+
+  cuota.update(cuotaPut, {
     where: { id: id }
   })
     .then(num => {
