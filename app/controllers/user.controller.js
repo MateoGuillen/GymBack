@@ -60,9 +60,12 @@ exports.login = async function (req, res) {
       if (validPassword) {
         //res.status(200).json({ message: "Valid password" });
         const token = generateAccessToken(user.username);
-        res.json({
-          token: `Bearer ${token}`,
-        });
+
+        res.header('auth-token', token).json({
+          error: null,
+          data: {token}
+        })
+        
       } else {
         res.status(400).json({ error: "Invalid Password" });
       }
