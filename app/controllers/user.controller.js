@@ -7,7 +7,7 @@ require('dotenv').config()
 
 
 function generateAccessToken(username) {
-  return jwt.sign({ username }, process.env.PRIVATE_KEY, { expiresIn: "1800s", });
+  return jwt.sign({ username }, process.env.PRIVATE_KEY, { expiresIn: "18000s", });
 }
 
 // Create and Save a new user

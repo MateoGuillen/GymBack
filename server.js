@@ -18,13 +18,13 @@ app.use(express.urlencoded({ extended: true }));
 
 console.log(process.env.PRIVATE_KEY)
 
-/*
+
 app.use(
   jwt({
     secret: process.env.PRIVATE_KEY,
     algorithms: ["HS256"],
-  }).unless({ path: [] })
-);*/
+  }).unless({ path: ["/api/users/login"] })
+);
 
 /*
 app.use(
@@ -36,6 +36,15 @@ app.use(
     }
 );
 */
+
+/*app.get(
+  "/ruta_aca",
+  jwt({ secret:process.env.PRIVATE_KEY, algorithms: ["HS256"] }),
+  function (req, res) {
+    if (!req.auth.admin) return res.sendStatus(401);
+    res.sendStatus(200);
+  }
+);*/
 
 const db = require("./app/models");
 db.sequelize.sync()
