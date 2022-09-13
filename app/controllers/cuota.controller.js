@@ -28,9 +28,15 @@ exports.create = (req, res) => {
       fechaPagar = addDays(new Date(fecha), 7)
     }else{
       //es Diario
-      fechaPagar = addDays(new Date(fecha), 1)
+      if (req.body.tipo == "Quincenal"){
+        fechaPagar = addDays(new Date(fecha), 15)
+      }else{
+        if (req.body.tipo == "Diario"){
+          fechaPagar = addDays(new Date(fecha), 1)
+        }
     }
   }
+}
   console.log(fechaPagar)
   //fechaPagar.setDate(fechaPagar.getDate() + 30)
 
@@ -303,10 +309,16 @@ exports.update = (req, res) => {
     if (req.body.tipo == "Semanal"){
       fechaPagar = addDays(new Date(fecha), 7)
     }else{
-      //es Diario
-      fechaPagar = addDays(new Date(fecha), 1)
+      
+      if (req.body.tipo == "Quincenal"){
+        fechaPagar = addDays(new Date(fecha), 15)
+      }else{
+        if (req.body.tipo == "Diario"){
+          fechaPagar = addDays(new Date(fecha), 1)
+        }
     }
   }
+}
   console.log(fechaPagar)
   //fechaPagar.setDate(fechaPagar.getDate() + 30)
 
