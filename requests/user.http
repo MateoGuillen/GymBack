@@ -8,8 +8,8 @@ POST {{api}}/api/users/signup
 Content-Type: application/json
 
 {
-  "username": "seichi",
-  "password": "12354"
+  "username": "user1",
+  "password": "1234"
 }
 
 ### Create user

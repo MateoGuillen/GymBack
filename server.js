@@ -23,7 +23,7 @@ app.use(
   jwt({
     secret: process.env.PRIVATE_KEY,
     algorithms: ["HS256"],
-  }).unless({ path: ["/api/users/login"] })
+  }).unless({ path: ["/api/users/login", "/api/users/signup"] })
 );
 
 /*
