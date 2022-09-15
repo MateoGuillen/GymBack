@@ -1,4 +1,5 @@
 @api = http://localhost:8080
+@apiproduction = https://vast-flannel-shirt-tuna.cyclic.app
 
 ### user
 GET {{api}}/api/users
@@ -27,5 +28,23 @@ Content-Type: application/json
 
 {
   "username": "user1",
+  "password": "1234"
+}
+
+### login in production
+POST {{{{apiproduction}}}}/api/users/login
+Content-Type: application/json
+
+{
+  "username": "seichi",
+  "password": "1234"
+}
+
+### Create user in production
+POST {{{{apiproduction}}}}/api/users/signup
+Content-Type: application/json
+
+{
+  "username": "user2",
   "password": "1234"
 }
