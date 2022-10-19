@@ -1,8 +1,9 @@
+require('dotenv').config()
 module.exports = {
-  HOST: "kesavan.db.elephantsql.com",
-  USER: "agmlhjnq",
-  PASSWORD: "5dHbDmidg6JCkPIs3xzXSZRLa_7TLNtn",
-  DB: "agmlhjnq",
+  HOST:process.env.HOST,
+  USER:process.env.USER,
+  PASSWORD:process.env.PASSWORD,
+  DB:process.env.DBNAME,
   dialect: "postgres",
   pool: {
     max: 5,

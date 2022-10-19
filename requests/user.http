@@ -4,6 +4,9 @@
 ### user
 GET {{api}}/api/users
 
+### user
+GET {{{{apiproduction}}}}/api/users
+
 ### Create user
 POST {{api}}/api/users/signup
 Content-Type: application/json

@@ -23,7 +23,7 @@ app.use(
   jwt({
     secret: process.env.PRIVATE_KEY,
     algorithms: ["HS256"],
-  }).unless({ path: ["/api/users/login", "/api/users/signup", "/api/users", "/"] })
+  }).unless({ path: ["/api/users/login", "/api/validtoken"] })
 );
 
 /*
@@ -72,6 +72,7 @@ app.get("/", (req, res) => {
 require("./app/routes/customer.routes")(app);
 require("./app/routes/cuota.routes")(app);
 require("./app/routes/user.routes")(app);
+require("./app/routes/validtoken.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT;

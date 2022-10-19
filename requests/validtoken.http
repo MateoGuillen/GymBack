@@ -1,0 +1,6 @@
+@api = http://localhost:8080
+@apiproduction = https://vast-flannel-shirt-tuna.cyclic.app
+
+### user
+GET {{api}}/api/validtoken
+
