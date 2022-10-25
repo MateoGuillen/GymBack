@@ -5,7 +5,7 @@ require('dotenv').config()
 const app = express();
 
 var corsOptions = {
-  origin: ["http://localhost:3000", "https://standfordgym.vercel.app"]
+  origin: ["http://localhost:3000", "https://standfordgym.vercel.app", "https://gym-front-git-dev-mateoguillen.vercel.app"]
 };
 
 app.use(cors(corsOptions));
